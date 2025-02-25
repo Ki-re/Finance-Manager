@@ -38,3 +38,80 @@ To run this project, you will need:
 pip install django
 pip install django-crispy-forms
 pip install matplotlib
+```
+
+Optionally, to generate PDF reports:
+```bash
+pip install reportlab
+```
+
+---
+
+## 🚀 Installation & Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/finance-manager.git
+   cd finance-manager
+   ```
+
+2. **Set up a virtual environment (optional but recommended):**
+   ```bash
+   python -m venv env
+   source env/bin/activate  # On Linux/macOS
+   env\Scripts\activate     # On Windows
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Apply database migrations:**
+   ```bash
+   python manage.py migrate
+   ```
+
+5. **Create a superuser (optional, for the Django admin panel):**
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+6. **Run the development server:**
+   ```bash
+   python manage.py runserver
+   ```
+
+Now, you can access the application at `http://127.0.0.1:8000/`.
+
+---
+
+## 📚 Project Structure
+
+```
+finance-manager/
+│── manage.py
+│── db.sqlite3
+│── finance_manager/
+│   │── settings.py
+│   │── urls.py
+│   │── wsgi.py
+│── transactions/
+│   │── models.py
+│   │── views.py
+│   │── templates/
+│   │── static/
+│── users/
+│   │── models.py
+│   │── views.py
+│── templates/
+│── static/
+│── requirements.txt
+```
+
+---
+
+## 🐟 License
+
+Distributed under the MIT License. See `LICENSE.txt` for more details.
+
