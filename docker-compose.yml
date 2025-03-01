@@ -41,11 +41,11 @@ services:
              cd /app &&
              npm install &&
              npm run build &&
-             serve -s dist -l 4173"
+             serve -s dist -l 80"
     working_dir: /app
     volumes:
       - /FinanceManager/Front:/app
     ports:
-      - "80:4173"
+      - "80:80"
     depends_on:
       - API
