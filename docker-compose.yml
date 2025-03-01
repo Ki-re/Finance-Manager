@@ -1,0 +1,46 @@
+version: "1.0"
+
+services:
+  DB:
+    image: postgres:17.4
+    container_name: DB
+    ports:
+      - "5432:5432"
+    volumes:
+      - /FinanceManager/DB/data:/var/lib/postgresql/data
+
+  API:
+    image: python:3.9
+    container_name: API
+    working_dir: /app
+    volumes:
+      - /FinanceManager/API:/app
+    command: >
+      bash -c "apt-get update &&
+               /usr/local/bin/python -m pip install --upgrade pip && 
+               cd /app &&
+               pip3 install -r requirements.txt &&
+               chmod +x start.sh && 
+               exec ./start.sh"
+    ports:
+      - "8001:8001"
+    depends_on:
+      - DB
+  
+  Front:
+    image: node:23-alpine
+    container_name: Front
+    command: >
+      sh -c "npm install -g http-server &&
+             npm install -g serve &&
+             cd /app &&
+             npm install &&
+             npm run build &&
+             serve -s dist -l 4173"
+    working_dir: /app
+    volumes:
+      - /FinanceManager/Front:/app
+    ports:
+      - "80:4173"
+    depends_on:
+      - API
