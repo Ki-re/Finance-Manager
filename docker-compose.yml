@@ -7,14 +7,14 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - /FinanceManager/DB/data:/var/lib/postgresql/data
+      - db_volume:/var/lib/postgresql/data
 
   API:
     image: python:3.9
     container_name: API
     working_dir: /app
     volumes:
-      - /FinanceManager/API:/app
+      - backend_data:/app
     command: >
       bash -c "apt-get update &&
                apt-get install git &&
@@ -44,7 +44,7 @@ services:
              serve -s dist -l 80"
     working_dir: /app
     volumes:
-      - /FinanceManager/Front:/app
+      - frontend_data:/app
     ports:
       - "80:80"
     depends_on:
